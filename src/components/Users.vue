@@ -1,7 +1,7 @@
 <template>
     <div class="users">   
         <h1>
-            Users
+            Contacts
         </h1>
         <form v-on:submit.prevent="addUser">
             <input type="text" v-model="newUser.name" placeholder="Enter Name "/>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { customRef } from 'vue';
+    import contactService from '@/services/contactService';
 
  export default {
     name:'users',
@@ -63,10 +63,8 @@ import { customRef } from 'vue';
        }
     },
     created: function() {
-        this.$http.get('https://jsonplaceholder.typicode.com/users')
-        .then((response)=>{
-            this.users = response.data
-        })
+        var user = contactService.getContactById(1);
+        console.log(user);
     }
 
  }
