@@ -1,30 +1,26 @@
 <template>
-<div id="app">
-  <router-link to="/">Go to Users</router-link><br>
-  <router-link to="/test">Go to Test</router-link>
-  <router-view></router-view>
-</div>
+  <div id="app">
+    <b-navbar toggleable type="light" variant="light" class="px-4">
+      <b-navbar-brand to="/">Adresar</b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item to="/test">Test</b-nav-item>
+          <b-nav-item to="/users">Korisnici</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-  import Test from './components/Test.vue'
-  import Users from './components/Users.vue'
-
   export default {
-  name: 'App',
-  components: {
-    Test,Users
+    name: 'App',
+    components: {}
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
