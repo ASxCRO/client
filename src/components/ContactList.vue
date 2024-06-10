@@ -1,10 +1,15 @@
 <template>
   <div class="p-3 bg-light rounded">
-    <b-input v-model="searchTerm" @input="fetchContacts" placeholder="Pretraži..." class="mb-3" />
+    <b-input
+      v-model="$store.state.contact.searchTerm"
+      @input="$store.dispatch('getAllContacts')"
+      placeholder="Pretraži..."
+      class="mb-3"
+    />
 
     <b-table
       id="my-table"
-      :items="items"
+      :items="contacts"
       :per-page="perPage"
       :fields="fields"
       striped
@@ -35,17 +40,14 @@
 
 <script>
   import contactService from '@/services/contactService'
+  import { mapGetters } from 'vuex'
+
   export default {
     name: '',
     components: {},
     data() {
       return {
-        searchTerm: '',
-        perPage: 10,
         currentPage: 1,
-        totalPages: 0,
-        totalItemsNumber: 0,
-        items: [],
         fields: [
           { key: 'firstName', label: 'Ime', sortable: true, hideSortIcon: true },
           { key: 'lastName', label: 'Prezime', sortable: true, hideSortIcon: true },
@@ -55,34 +57,37 @@
       }
     },
     methods: {
-      fetchContacts() {
-        return contactService
-          .getAllContacts(this.currentPage, this.perPage, '', this.searchTerm)
-          .then(data => {
-            this.items = data.contacts
-            this.totalPages = data.totalPages
-            this.totalItemsNumber = data.totalItemsNumber
-          })
-      },
       editContact(contact) {
-        this.$emit('edit-contact', contact)
+        this.$store.commit('contact/editContact', contact)
       },
       deleteContact(id) {
         contactService.deleteContact(id).then(() => {
-          this.fetchContacts().then(() => {})
+          this.$store.dispatch('contact/getAllContacts')
         })
       },
       handlePaginationChange(newPage) {
         this.currentPage = newPage
-        this.fetchContacts()
+        this.$store.state.contact.currentPage = this.currentPage
+        this.$store.dispatch('contact/getAllContacts')
       },
       onSortChanged(ctx) {
         this.sortField = ctx.sortBy //+ ' ' + (ctx.sortDesc ? 'Desc' : 'Asc')
-        this.fetchContacts()
+        this.$store.dispatch('contact/getAllContacts')
       }
     },
     mounted() {
-      this.fetchContacts()
+      this.$store.dispatch('contact/getAllContacts')
+    },
+    computed: {
+      ...mapGetters({
+        contacts: 'contact/allContacts'
+      }),
+      totalItemsNumber() {
+        return this.$store.state.contact.totalItemsNumber
+      },
+      perPage() {
+        return this.$store.state.contact.perPage
+      }
     }
   }
 </script>

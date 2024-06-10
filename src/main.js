@@ -6,6 +6,7 @@ import Test from './components/Test.vue'
 import Users from './components/Users.vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import Contact from './pages/Contact.vue'
+import { store } from './store'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -27,5 +28,6 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

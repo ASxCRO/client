@@ -1,16 +1,12 @@
 <template>
   <b-container>
     <b-row>
-      <b-button v-if="!showForm" @click="addContact" variant="primary" class="mt-3">Dodaj</b-button>
+      <b-button v-if="!showForm" @click="$store.commit('addUser')" variant="primary" class="mt-3"
+        >Dodaj</b-button
+      >
       <b-col>
-        <contact-form
-          v-if="showForm"
-          :contact="selectedContact"
-          :isEdit="isEdit"
-          @contact-saved="handleContactSaved"
-          @cancel="showForm = false"
-        />
-        <contact-list v-else @edit-contact="editContact" ref="contactList" />
+        <contact-form v-if="showForm" />
+        <contact-list v-else />
       </b-col>
     </b-row>
   </b-container>
@@ -25,28 +21,17 @@
       ContactList,
       ContactForm
     },
-    data() {
-      return {
-        showForm: false,
-        selectedContact: null,
-        isEdit: false
+    computed: {
+      showForm() {
+        return this.$store.state.contact.showForm
+      },
+      selectedContact() {
+        return this.$store.state.contact.selectedContact
+      },
+      isEdit() {
+        return this.$store.state.contact.isEdit
       }
     },
-    methods: {
-      addContact() {
-        this.selectedContact = {}
-        this.isEdit = false
-        this.showForm = true
-      },
-      editContact(contact) {
-        this.selectedContact = { ...contact }
-        this.isEdit = true
-        this.showForm = true
-      },
-      handleContactSaved() {
-        this.showForm = false
-        this.$refs.contactList.fetchContacts()
-      }
-    }
+    methods: {}
   }
 </script>
