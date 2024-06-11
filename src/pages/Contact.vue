@@ -1,7 +1,11 @@
 <template>
   <b-container>
     <b-row>
-      <b-button v-if="!showForm" @click="$store.commit('addUser')" variant="primary" class="mt-3"
+      <b-button
+        v-if="!showForm"
+        @click="$store.dispatch('contact/addContact')"
+        variant="primary"
+        class="mt-3"
         >Dodaj</b-button
       >
       <b-col>

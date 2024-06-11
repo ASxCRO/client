@@ -7,6 +7,6 @@ export const contactsModule = {
   namespaced: true,
   state,
   getters,
-  mutations,
-  actions
+  mutations: mutations,
+  actions: actions
 }

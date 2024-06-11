@@ -2,10 +2,18 @@
   <div class="p-3 bg-light rounded">
     <b-input
       v-model="$store.state.contact.searchTerm"
-      @input="$store.dispatch('getAllContacts')"
+      @input="$store.dispatch('contact/getAllContacts')"
       placeholder="Pretraži..."
       class="mb-3"
     />
+
+    <b-form-select
+      v-model="perPage"
+      :options="pageSizes"
+      class="mb-3"
+      @change="handlePageSizeChange"
+    >
+    </b-form-select>
 
     <b-table
       id="my-table"
@@ -53,6 +61,13 @@
           { key: 'lastName', label: 'Prezime', sortable: true, hideSortIcon: true },
           { key: 'email', label: 'Email', sortable: true, hideSortIcon: true },
           { key: 'actions', label: 'Akcije', sortable: false, hideSortIcon: true }
+        ],
+        pageSizes: [
+          { value: 5, text: '5' },
+          { value: 10, text: '10' },
+          { value: 20, text: '20' },
+          { value: 50, text: '50' },
+          { value: 100, text: '100' }
         ]
       }
     },
@@ -71,7 +86,12 @@
         this.$store.dispatch('contact/getAllContacts')
       },
       onSortChanged(ctx) {
-        this.sortField = ctx.sortBy //+ ' ' + (ctx.sortDesc ? 'Desc' : 'Asc')
+        this.sortField = ctx.sortBy + ' ' + (ctx.sortDesc ? 'Desc' : 'Asc')
+        this.$store.state.contact.sortField = this.sortField
+        this.$store.dispatch('contact/getAllContacts')
+      },
+      handlePageSizeChange(newPageSize) {
+        this.$store.state.contact.perPage = newPageSize
         this.$store.dispatch('contact/getAllContacts')
       }
     },

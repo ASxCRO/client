@@ -3,7 +3,7 @@ import contactService from '@/services/contactService'
 export const mutations = {
   fetchContacts(state) {
     return contactService
-      .getAllContacts(state.currentPage, state.perPage, '', state.searchTerm)
+      .getAllContacts(state.currentPage, state.perPage, state.sortField, state.searchTerm)
       .then(data => {
         state.contacts = data.contacts
         state.totalPages = data.totalPages
@@ -24,8 +24,8 @@ export const mutations = {
     }
   },
   addContact(state) {
-    state.contact.selectedContact = {}
-    state.contact.isEdit = false
-    state.contact.showForm = true
+    state.selectedContact = {}
+    state.isEdit = false
+    state.showForm = true
   }
 }

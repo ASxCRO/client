@@ -12,5 +12,6 @@ export const state = {
   totalItemsNumber: 0,
   searchTerm: '',
   perPage: 10,
-  currentPage: 1
+  currentPage: 1,
+  sortField: 'Id'
 }
