@@ -1,13 +1,15 @@
 <template>
   <b-container>
-    <b-row>
+    <b-row class="d-flex justify-content-end">
       <b-button
         v-if="!showForm"
         @click="$store.dispatch('contact/addContact')"
         variant="primary"
-        class="mt-3"
+        class="mt-3 mb-3 w-25"
         >Dodaj</b-button
       >
+    </b-row>
+    <b-row>
       <b-col>
         <contact-form v-if="showForm" />
         <contact-list v-else />

@@ -1,19 +1,25 @@
 <template>
   <div class="p-3 bg-light rounded">
-    <b-input
-      v-model="$store.state.contact.searchTerm"
-      @input="$store.dispatch('contact/getAllContacts')"
-      placeholder="Pretraži..."
-      class="mb-3"
-    />
-
-    <b-form-select
-      v-model="perPage"
-      :options="pageSizes"
-      class="mb-3"
-      @change="handlePageSizeChange"
-    >
-    </b-form-select>
+    <b-container>
+      <b-row>
+        <b-col>
+          <b-input
+            v-model="$store.state.contact.searchTerm"
+            @input="$store.dispatch('contact/getAllContacts')"
+            placeholder="Pretraži..."
+            class="mb-3"
+        /></b-col>
+        <b-col class="d-flex justify-content-end align-items-center">
+          <b-form-select
+            v-model="perPage"
+            :options="pageSizes"
+            class="mb-3"
+            @change="handlePageSizeChange"
+          >
+          </b-form-select>
+        </b-col>
+      </b-row>
+    </b-container>
 
     <b-table
       id="my-table"
