@@ -6,7 +6,7 @@
         @click="$store.dispatch('contact/addContact')"
         variant="primary"
         class="mt-3 mb-3 w-25"
-        >Dodaj</b-button
+        >{{ $t('add') }}</b-button
       >
     </b-row>
     <b-row>

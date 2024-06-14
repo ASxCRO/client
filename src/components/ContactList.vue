@@ -6,7 +6,7 @@
           <b-input
             v-model="$store.state.contact.searchTerm"
             @input="$store.dispatch('contact/getAllContacts')"
-            placeholder="Pretraži..."
+            :placeholder="$t('search')"
             class="mb-3"
         /></b-col>
         <b-col class="d-flex justify-content-end align-items-center">
@@ -25,7 +25,7 @@
       id="my-table"
       :items="contacts"
       :per-page="perPage"
-      :fields="fields"
+      :fields="localizedFields"
       striped
       bordered
       hover
@@ -34,8 +34,10 @@
       @sort-changed="onSortChanged"
     >
       <template #cell(actions)="data">
-        <b-button size="sm" @click="editContact(data.item)" class="mx-2">Uredi</b-button>
-        <b-button size="sm" variant="danger" @click="deleteContact(data.item.id)">Obriši</b-button>
+        <b-button size="sm" @click="editContact(data.item)" class="mx-2">{{ $t('edit') }}</b-button>
+        <b-button size="sm" variant="danger" @click="deleteContact(data.item.id)">{{
+          $t('delete')
+        }}</b-button>
       </template>
     </b-table>
 
@@ -48,7 +50,7 @@
       class="my-3"
       @change="handlePaginationChange"
     ></b-pagination>
-    <p class="mt-3 text-center">Trenutna stranica: {{ currentPage }}</p>
+    <p class="mt-3 text-center">{{ $t('currentPage') }}: {{ currentPage }}</p>
   </div>
 </template>
 
@@ -63,10 +65,10 @@
       return {
         currentPage: 1,
         fields: [
-          { key: 'firstName', label: 'Ime', sortable: true, hideSortIcon: true },
-          { key: 'lastName', label: 'Prezime', sortable: true, hideSortIcon: true },
-          { key: 'email', label: 'Email', sortable: true, hideSortIcon: true },
-          { key: 'actions', label: 'Akcije', sortable: false, hideSortIcon: true }
+          { key: 'firstName', label: this.$t('name'), sortable: true, hideSortIcon: true },
+          { key: 'lastName', label: this.$t('surname'), sortable: true, hideSortIcon: true },
+          { key: 'email', label: this.$t('email'), sortable: true, hideSortIcon: true },
+          { key: 'actions', label: this.$t('actions'), sortable: false, hideSortIcon: true }
         ],
         pageSizes: [
           { value: 5, text: '5' },
@@ -113,6 +115,14 @@
       },
       perPage() {
         return this.$store.state.contact.perPage
+      },
+      localizedFields() {
+        return [
+          { key: 'firstName', label: this.$t('name'), sortable: true, hideSortIcon: true },
+          { key: 'lastName', label: this.$t('surname'), sortable: true, hideSortIcon: true },
+          { key: 'email', label: this.$t('email'), sortable: true, hideSortIcon: true },
+          { key: 'actions', label: this.$t('actions'), sortable: false, hideSortIcon: true }
+        ]
       }
     }
   }

@@ -1,21 +1,21 @@
 <template>
   <b-container>
-    <h2>{{ isEdit ? 'Uredi kontakt' : 'Dodaj kontakt' }}</h2>
+    <h2>{{ isEdit ? $t('edit') : $t('add') }}</h2>
     <b-form @submit.prevent="saveContact">
-      <b-form-group label="Ime">
+      <b-form-group :label="$t('name')">
         <b-form-input v-model="$store.state.contact.selectedContact.firstName" required />
       </b-form-group>
-      <b-form-group label="Prezime">
+      <b-form-group :label="$t('surname')">
         <b-form-input v-model="$store.state.contact.selectedContact.lastName" required />
       </b-form-group>
-      <b-form-group label="Email">
+      <b-form-group :label="$t('email')">
         <b-form-input type="email" v-model="$store.state.contact.selectedContact.email" required />
       </b-form-group>
       <br />
       <b-button type="submit" variant="primary" class="px-2 mx-2">
-        {{ isEdit ? 'Uredi' : 'Dodaj' }}
+        {{ isEdit ? $t('edit') : $t('add') }}
       </b-button>
-      <b-button @click="cancel" variant="secondary"> Odustani </b-button>
+      <b-button @click="cancel" variant="secondary"> {{ $t('cancel') }} </b-button>
     </b-form>
   </b-container>
 </template>
