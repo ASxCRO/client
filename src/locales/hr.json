@@ -15,5 +15,6 @@
   "fullName": "Puno ime",
   "login": "Prijava",
   "register": "Registracija",
-  "cancel": "Odustani"
+  "cancel": "Odustani",
+  "logout": "Odjava"
 }

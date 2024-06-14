@@ -1,18 +1,22 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import router from '@/router'
 
 Vue.use(VueResource)
 
 const API_BASE_URL = process.env.VUE_APP_API_BASE_URL
 
 Vue.http.interceptors.push((request, next) => {
-  // Add authorization header with token
   const token = localStorage.getItem('token')
   if (token) {
     request.headers.set('Authorization', `Bearer ${token}`)
   }
-  // Continue to next interceptor or send the request
-  next()
+
+  next(response => {
+    if (response.status === 401) {
+      router.push('/logout')
+    }
+  })
 })
 
 const authService = {
@@ -34,6 +38,10 @@ const authService = {
         console.error('Error registering:', error)
         throw error
       })
+  },
+
+  logout() {
+    localStorage.removeItem('token')
   }
 }
 

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <b-container>
     <h2>{{ $t('login') }}</h2>
     <b-form @submit.prevent="login">
-      <b-form-group :label="$t('username')" label-for="username">
+      <b-form-group :label="$t('username')" label-for="username" class="my-2">
         <b-form-input
           v-model="username"
           type="text"
@@ -17,8 +17,11 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary">{{ $t('login') }}</b-button>
+      <b-button type="button" variant="secondary" v-on:click="$router.push('/register')">{{
+        $t('register')
+      }}</b-button>
     </b-form>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -42,7 +45,6 @@
           this.$router.push('/dashboard')
         } catch (error) {
           console.error('Login error:', error)
-          // Handle login error (show message, reset form, etc.)
         }
       }
     }

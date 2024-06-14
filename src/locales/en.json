@@ -15,5 +15,6 @@
   "fullName": "Full name",
   "login": "Login",
   "register": "Register",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "logout": "Logout"
 }

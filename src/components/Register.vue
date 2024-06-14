@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container>
     <h2>{{ $t('register') }}</h2>
     <b-form @submit.prevent="register">
       <b-form-group :label="$t('username')" label-for="username">
@@ -21,8 +21,11 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary">{{ $t('register') }}</b-button>
+      <b-button type="button" variant="secondary" v-on:click="$router.push('/login')">{{
+        $t('login')
+      }}</b-button>
     </b-form>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -41,13 +44,9 @@
         try {
           const response = await authService.register(this.username, this.password, this.fullName)
           console.log('Registration successful:', response)
-
-          // Handle successful registration (show success message, redirect, etc.)
-          // Example: Redirect to login page after successful registration
           this.$router.push('/login')
         } catch (error) {
           console.error('Registration error:', error)
-          // Handle registration error (show message, reset form, etc.)
         }
       }
     }
