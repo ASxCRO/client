@@ -10,22 +10,15 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-row class="d-flex justify-content-end">
-      <LanguageSwitcher />
-    </b-row>
 
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
-
   export default {
     name: 'App',
-    components: {
-      LanguageSwitcher
-    }
+    components: {}
   }
 </script>
 

@@ -15,6 +15,8 @@ Vue.http.interceptors.push((request, next) => {
   next(response => {
     if (response.status === 401) {
       router.push('/logout')
+    } else if (response.status === 500) {
+      router.push('/error')
     }
   })
 })

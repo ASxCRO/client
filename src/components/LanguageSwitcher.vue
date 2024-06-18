@@ -1,5 +1,5 @@
 <template>
-  <b-dropdown id="dropdown-1" :text="$t('chooseLanguage')" class="m-md-2">
+  <b-dropdown id="dropdown-1" :text="$t('chooseLanguage')" class="m-3">
     <b-dropdown-item @click="changeLanguage('en')">English</b-dropdown-item>
     <b-dropdown-item @click="changeLanguage('hr')">Hrvatski</b-dropdown-item>
   </b-dropdown>

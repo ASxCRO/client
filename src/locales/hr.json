@@ -16,5 +16,6 @@
   "login": "Prijava",
   "register": "Registracija",
   "cancel": "Odustani",
+  "error": "Došlo je do pogreške, pokušajte kasnije.",
   "logout": "Odjava"
 }

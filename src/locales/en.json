@@ -16,5 +16,6 @@
   "login": "Login",
   "register": "Register",
   "cancel": "Cancel",
-  "logout": "Logout"
+  "logout": "Logout",
+  "error": "There was an error, please try again later."
 }

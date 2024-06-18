@@ -21,7 +21,7 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary">{{ $t('register') }}</b-button>
-      <b-button type="button" variant="secondary" v-on:click="$router.push('/login')">{{
+      <b-button type="button" variant="secondary" v-on:click="$router.push('/login')" class="m-2">{{
         $t('login')
       }}</b-button>
     </b-form>

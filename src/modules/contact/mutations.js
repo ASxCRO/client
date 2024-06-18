@@ -9,6 +9,9 @@ export const mutations = {
         state.totalPages = data.totalPages
         state.totalItemsNumber = data.totalItemsNumber
       })
+      .catch(error => {
+        console.log(error)
+      })
   },
   editContact(state, contact) {
     state.showForm = true

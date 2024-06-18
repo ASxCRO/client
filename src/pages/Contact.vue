@@ -1,13 +1,18 @@
 <template>
   <b-container>
     <b-row class="d-flex justify-content-end">
-      <b-button
-        v-if="!showForm"
-        @click="$store.dispatch('contact/addContact')"
-        variant="primary"
-        class="mt-3 mb-3 w-25"
-        >{{ $t('add') }}</b-button
-      >
+      <b-col>
+        <b-button
+          v-if="!showForm"
+          @click="$store.dispatch('contact/addContact')"
+          variant="primary"
+          class="mt-3 mb-3 w-25"
+          >{{ $t('add') }}</b-button
+        >
+      </b-col>
+      <b-col class="d-flex justify-content-end">
+        <LanguageSwitcher />
+      </b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -21,11 +26,13 @@
 <script>
   import ContactList from '@/components/ContactList.vue'
   import ContactForm from '@/components/ContactForm.vue'
+  import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 
   export default {
     components: {
       ContactList,
-      ContactForm
+      ContactForm,
+      LanguageSwitcher
     },
     computed: {
       showForm() {
